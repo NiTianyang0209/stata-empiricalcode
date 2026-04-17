@@ -1,0 +1,7 @@
+# 明确指定 .do / .ado 文件为 Stata 语言
+*.do linguist-language=Stata
+*.ado linguist-language=Stata
+
+# 可选：排除日志/数据文件，不参与语言统计
+*.log linguist-vendored
+*.dta linguist-vendored
