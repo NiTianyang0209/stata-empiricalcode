@@ -1,0 +1,19 @@
+* 结果输出
+reghdfe Y X, absorb(id year) vce(cluster clustervar) //稳健标准误vce(robust) 
+est sto basereg01 
+
+reghdfe Y X $CV, ab(id year) vce(cluster clustervar) //稳健标准误vce(robust) 
+est sto basereg02 
+
+estfe basereg01 basereg02, labels(id "个体固定效应" year "年份固定效应" )
+return list
+
+esttab basereg01 basereg02 using "基准回归.rtf", ///
+	replace star( * 0.10 ** 0.05 *** 0.01 ) nogaps compress ///
+	b(%20.3f) t(%7.3f)  ///
+	scalars(r2_within) ///
+	indicate(`r(indicate_fe)') ///
+	order(X) ///
+	mtitles("Y" "Y" ) ///
+	title(regression result) 
+// 保留4位小数则.4f 
