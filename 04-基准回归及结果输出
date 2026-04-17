@@ -17,3 +17,4 @@ esttab basereg01 basereg02 using "基准回归.rtf", ///
 	mtitles("Y" "Y" ) ///
 	title(regression result) 
 // 保留4位小数则.4f 
+
