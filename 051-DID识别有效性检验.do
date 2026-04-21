@@ -43,6 +43,31 @@ esttab sbyxx01 using "事前趋势检验.rtf", ///
 	title(regression result)
 
 
+* 去均值 
+forvalue i=2/6{
+	gen b_`i' = _b[pre_`i']
+}
+
+gen avg_coef = (b_2+b_3+b_4+b_5+b_6)/5 
+gen avg_coef1 = 0.15*b_2+0.15*b_3+0.15*b_4+0.15*b_5+0.4*b_6 
+
+su avg_coef1 
+return list 
+
+* 政策动态效应图
+coefplot, baselevels vertical keep(pre_* current post_*) omitted ///
+order(pre_6 pre_5 pre_4 pre_3 pre_2 pre_1 current post_1 post_2 post_3 post_4 post_5 post_6) ///
+level(99) ///
+yline(0,lcolor(edkblue*0.8)) xline(7, lwidth(thin) lpattern(shortdash) lcolor(teal)) ///
+ylabel(,labsize(*0.75) format(%7.2f) angle(0)) ///
+xlabel(,labsize(*0.75)) ///
+ytitle("政策动态效应", size(small)) ///
+xtitle("政策相对时点", size(small)) ///
+transform(pre_6=@-r(mean) pre_5=@-r(mean) pre_4=@-r(mean) pre_3=@-r(mean) pre_2=@-r(mean) pre_1=@ current=@-r(mean) post_1=@-r(mean) post_2=@-r(mean) post_3=@-r(mean) post_4=@-r(mean) post_5=@-r(mean) post_6=@-r(mean)) ///
+addplot(line @b @at) ciopts(lpattern(line) recast(rcap) msize(medium)) msymbol(circle_hollow) scheme(s1mono)
+
+
+
 **# DID识别有效性-平行趋势敏感性分析 
 mat list e(b) 
 local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
