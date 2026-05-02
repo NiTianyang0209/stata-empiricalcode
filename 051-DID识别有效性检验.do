@@ -68,39 +68,6 @@ addplot(line @b @at) ciopts(lpattern(line) recast(rcap) msize(medium)) msymbol(c
 
 
 
-**# DID识别有效性-平行趋势敏感性分析 
-mat list e(b) 
-local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
-
-* 相对偏离程度限制 90%区间，0.5倍
-honestdid, pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts'
-
-* post_1 0.1可以
-matrix l_vec = 0 \ 1 \ 0 \ 0 \ 0 \ 0  
-local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
-* 相对偏离程度限制 90%区间，0.5倍
-honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
-
-* 第三期 0.1可以
-matrix l_vec = 0 \ 0 \ 1 \ 0 \ 0 \ 0  
-local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
-* 相对偏离程度限制 90%区间，0.5倍
-honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
-
-* 第五期 0.1可以
-matrix l_vec = 0 \ 0 \ 0 \ 0 \ 1 \ 0  
-local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
-* 相对偏离程度限制 90%区间，0.5倍
-honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
-
-* 五期平均 0.1可以
-matrix l_vec = 0 \ 0.2 \ 0.2 \ 0.2 \ 0.2 \ 0.2  
-local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
-* 相对偏离程度限制 90%区间，0.5倍
-honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
-
-graph combine graph01.gph graph.gph, row(1)
-
 
 **# DID识别有效性-异质性处理效应 
 * 做法一览：
@@ -183,6 +150,8 @@ title("Cengiz et al.(2019)估计量") ///
 addplot(line @b @at) ciopts(lpattern(line) recast(rcap) msize(medium)) msymbol(circle_hollow) scheme(s1mono)
 
 
+
+
 **# DID识别有效性-安慰剂检验
 reghdfe Y DID $CV, ab(id year) vce(cluster clustervar)  //
 
@@ -197,3 +166,41 @@ didplacebo abc, treatvar(DID) pbomix(2) seed(12345678) //无约束混合安慰�
 didplacebo abc, treatvar(DID) pbomix(3) seed(12345678) //有约束混合安慰剂，双边p值 
 
 graph combine sbyxx04-1.gph sbyxx04-2.gph sbyxx04-3.gph sbyxx04-4.gph, row(2)
+
+
+
+
+**# DID识别有效性-平行趋势敏感性分析 
+mat list e(b) 
+local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
+
+* 相对偏离程度限制 90%区间，0.5倍
+honestdid, pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts'
+
+* post_1 0.1可以
+matrix l_vec = 0 \ 1 \ 0 \ 0 \ 0 \ 0  
+local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
+* 相对偏离程度限制 90%区间，0.5倍
+honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
+
+* 第三期 0.1可以
+matrix l_vec = 0 \ 0 \ 1 \ 0 \ 0 \ 0  
+local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
+* 相对偏离程度限制 90%区间，0.5倍
+honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
+
+* 第五期 0.1可以
+matrix l_vec = 0 \ 0 \ 0 \ 0 \ 1 \ 0  
+local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
+* 相对偏离程度限制 90%区间，0.5倍
+honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
+
+* 五期平均 0.1可以
+matrix l_vec = 0 \ 0.2 \ 0.2 \ 0.2 \ 0.2 \ 0.2  
+local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
+* 相对偏离程度限制 90%区间，0.5倍
+honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
+
+graph combine graph01.gph graph.gph, row(1) 
+
+
