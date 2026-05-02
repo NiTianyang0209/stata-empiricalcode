@@ -103,6 +103,9 @@ graph combine graph01.gph graph.gph, row(1)
 
 
 **# DID识别有效性-异质性处理效应 
+* 做法一览：
+* https://www.lianxh.cn/news/424b22920a877.html 
+* https://www.lianxh.cn/details/1097.html
 ddtiming Y X, i(id) t(year)  
 bacondecomp Y X, ddetail //"晚处理vs早处理"权重要小 
 
