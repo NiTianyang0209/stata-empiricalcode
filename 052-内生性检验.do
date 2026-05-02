@@ -1,3 +1,4 @@
+* 内生性检验一览：https://www.lianxh.cn/news/224e2b4e170e4.html
 **# 内生性检验-豪斯曼检验 
 reg Y X $CV
 est sto ols 
