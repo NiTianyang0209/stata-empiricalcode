@@ -177,25 +177,25 @@ local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置
 * 相对偏离程度限制 90%区间，0.5倍
 honestdid, pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts'
 
-* post_1 0.1可以
+* post_1
 matrix l_vec = 0 \ 1 \ 0 \ 0 \ 0 \ 0  
 local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
 * 相对偏离程度限制 90%区间，0.5倍
 honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
 
-* 第三期 0.1可以
+* 第三期 
 matrix l_vec = 0 \ 0 \ 1 \ 0 \ 0 \ 0  
 local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
 * 相对偏离程度限制 90%区间，0.5倍
 honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
 
-* 第五期 0.1可以
+* 第五期 
 matrix l_vec = 0 \ 0 \ 0 \ 0 \ 1 \ 0  
 local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
 * 相对偏离程度限制 90%区间，0.5倍
 honestdid, l_vec(l_vec) pre(1/4) post(5/10) mvec(0(0.1)0.5) alpha(0.1) coefplot `plotopts' 
 
-* 五期平均 0.1可以
+* 五期平均 
 matrix l_vec = 0 \ 0.2 \ 0.2 \ 0.2 \ 0.2 \ 0.2  
 local plotopts xtitle(平行趋势偏离的相对程度Mbar) ytitle(90%稳健置信区间) title(相对偏离程度限制) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) scheme(s1mono) 
 * 相对偏离程度限制 90%区间，0.5倍
