@@ -17,9 +17,9 @@ ivreghdfe Y $CV (X=IV) i.year i.id, cluster(clustervar) first savefirst savefpre
 ivreghdfe Y $CV (X=IV) i.year i.id, cluster(clustervar) first savefirst savefprefix(f) partial(i.year i.id) 
 est sto gjbl01
 
-estadd scalar F =`e(widstat)': fY
+estadd scalar F =`e(widstat)': fX
 
-esttab fY gjbl01 using "工具变量法.rtf", ///
+esttab fX gjbl01 using "工具变量法.rtf", ///
 	scalar(idstat idp F) ///idstat是KP-LM统计量，idp是对应p值；F是KP-F统计量，用Stock-Yogo10%临界值进行判断
 	replace star( * 0.10 ** 0.05 *** 0.01 ) ///
 	order(Y IV) ///
